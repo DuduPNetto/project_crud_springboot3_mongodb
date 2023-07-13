@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.eduardonetto.main.entities.Post;
+import com.eduardonetto.main.resources.util.URL;
 import com.eduardonetto.main.services.PostService;
 
 @RestController
@@ -54,6 +56,13 @@ public class PostResource {
 	public ResponseEntity<Post> update(@RequestBody Post post, @PathVariable String id) {
 		post = service.update(id, post);
 		return ResponseEntity.ok().body(post);
+	}
+
+	@GetMapping(value = "/search")
+	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String title) {
+		title = URL.decodeParam(title);
+		List<Post> posts = service.findByTitle(title);
+		return ResponseEntity.ok().body(posts);
 	}
 
 }
