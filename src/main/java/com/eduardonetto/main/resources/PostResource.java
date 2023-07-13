@@ -65,4 +65,11 @@ public class PostResource {
 		return ResponseEntity.ok().body(posts);
 	}
 
+	@GetMapping(value = "/fullsearch")
+	public ResponseEntity<List<Post>> fullSearch(@RequestParam(value = "text", defaultValue = "") String text) {
+		text = URL.decodeParam(text);
+		List<Post> posts = service.fullSearch(text);
+		return ResponseEntity.ok().body(posts);
+	}
+
 }
