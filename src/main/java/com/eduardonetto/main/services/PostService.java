@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.eduardonetto.main.dto.PostDTO;
 import com.eduardonetto.main.entities.Post;
 import com.eduardonetto.main.repositories.PostRepository;
 import com.eduardonetto.main.services.exception.ObjectNotFoundException;
@@ -47,10 +46,6 @@ public class PostService {
 		newPost.setAuthor(post.getAuthor());
 		newPost.setDate(post.getDate());
 		return newPost;
-	}
-
-	public Post fromDTO(PostDTO postDto) {
-		return new Post(postDto.getId(), postDto.getDate(), postDto.getTitle(), postDto.getBody(), postDto.getAuthor());
 	}
 
 }

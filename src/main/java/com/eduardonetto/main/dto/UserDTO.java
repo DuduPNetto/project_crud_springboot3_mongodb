@@ -1,8 +1,11 @@
 package com.eduardonetto.main.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import com.eduardonetto.main.entities.Post;
 import com.eduardonetto.main.entities.User;
 
 public class UserDTO implements Serializable {
@@ -12,6 +15,8 @@ public class UserDTO implements Serializable {
 	private String id;
 	private String name;
 	private String email;
+	
+	private List<Post> posts = new ArrayList<>();
 
 	public UserDTO() {
 	}
@@ -20,6 +25,7 @@ public class UserDTO implements Serializable {
 		this.id = user.getId();
 		this.name = user.getName();
 		this.email = user.getEmail();
+		this.posts = user.getPosts();
 	}
 
 	public String getId() {
@@ -44,6 +50,10 @@ public class UserDTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public List<Post> getPosts() {
+		return posts;
 	}
 
 	@Override

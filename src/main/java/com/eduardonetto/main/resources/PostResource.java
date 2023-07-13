@@ -2,7 +2,6 @@ package com.eduardonetto.main.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.eduardonetto.main.dto.PostDTO;
 import com.eduardonetto.main.entities.Post;
 import com.eduardonetto.main.services.PostService;
 
@@ -28,23 +26,21 @@ public class PostResource {
 	private PostService service;
 
 	@GetMapping
-	public ResponseEntity<List<PostDTO>> findAll() {
+	public ResponseEntity<List<Post>> findAll() {
 		List<Post> list = service.findAll();
-		List<PostDTO> listDto = list.stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDto);
+		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<PostDTO> findById(@PathVariable String id) {
+	public ResponseEntity<Post> findById(@PathVariable String id) {
 		Post post = service.findById(id);
-		return ResponseEntity.ok().body(new PostDTO(post));
+		return ResponseEntity.ok().body(post);
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody PostDTO postDto) {
-		Post entity = service.fromDTO(postDto);
-		entity = service.insert(entity);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(entity.getId()).toUri();
+	public ResponseEntity<Void> insert(@RequestBody Post post) {
+		post = service.insert(post);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
@@ -55,10 +51,9 @@ public class PostResource {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<PostDTO> update(@RequestBody PostDTO postDto, @PathVariable String id) {
-		Post entity = service.fromDTO(postDto);
-		entity = service.update(id, entity);
-		return ResponseEntity.ok().body(new PostDTO(entity));
+	public ResponseEntity<Post> update(@RequestBody Post post, @PathVariable String id) {
+		post = service.update(id, post);
+		return ResponseEntity.ok().body(post);
 	}
 
 }
