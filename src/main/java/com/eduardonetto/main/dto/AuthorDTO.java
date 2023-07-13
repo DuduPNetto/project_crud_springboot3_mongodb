@@ -2,9 +2,6 @@ package com.eduardonetto.main.dto;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.eduardonetto.main.entities.User;
 
 public class AuthorDTO implements Serializable {
