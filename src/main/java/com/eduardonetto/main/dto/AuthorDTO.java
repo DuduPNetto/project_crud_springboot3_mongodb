@@ -7,12 +7,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.eduardonetto.main.entities.User;
 
-@Document(collection = "author")
 public class AuthorDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private String id;
 	private String name;
 
