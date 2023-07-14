@@ -11,8 +11,8 @@
 	<groupId>com.eduardonetto</groupId>
 	<artifactId>main</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>project_workshop_springboot3_mongodb</name>
-	<description>Workshop Spring Boot with MongoDB</description>
+	<name>project_crud_springboot3_mongodb</name>
+	<description>CRUD Spring Boot project with MongoDB</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

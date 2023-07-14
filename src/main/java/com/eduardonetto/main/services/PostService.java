@@ -49,7 +49,7 @@ public class PostService {
 	}
 
 	public List<Post> findByTitle(String title) {
-		return repository.searchTitle(title);
+		return repository.searchByTitle(title);
 	}
 
 	public List<Post> fullSearch(String text) {

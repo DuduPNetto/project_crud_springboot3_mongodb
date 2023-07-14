@@ -1,4 +1,4 @@
-# Project Workshop Springboot 3 and MongoDB
+# Project CRUD Springboot 3 and MongoDB
 
 Projeto feito no curso Java Completo 2023. Como introdução ao Java Spring usando o MongoDB.
 
